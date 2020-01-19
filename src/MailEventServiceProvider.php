@@ -1,22 +1,24 @@
 <?php
+
 namespace Giuga\LaravelMailLog;
 
 use Giuga\LaravelMailLog\Listeners\MailSentListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Mail\Events\MessageSent;
 
-class MailEventServiceProvider extends ServiceProvider{
+class MailEventServiceProvider extends ServiceProvider
+{
     protected $listen = [
         MessageSent::class => [
             MailSentListener::class,
         ],
     ];
+
     /**
      * Bootstrap the application services.
      */
     public function boot()
     {
-
     }
 
     /**
@@ -24,6 +26,5 @@ class MailEventServiceProvider extends ServiceProvider{
      */
     public function register()
     {
-
     }
 }

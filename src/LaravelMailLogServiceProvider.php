@@ -2,8 +2,6 @@
 
 namespace Giuga\LaravelMailLog;
 
-use Giuga\LaravelMailLog\Listeners\MailSentListener;
-use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelMailLogServiceProvider extends ServiceProvider

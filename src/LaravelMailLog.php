@@ -4,5 +4,4 @@ namespace Giuga\LaravelMailLog;
 
 class LaravelMailLog
 {
-
 }

@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/gabrieliuga/laravel-mail-log.svg?style=flat-square)](https://packagist.org/packages/gabrieliuga/laravel-mail-log)
 [![Build Status](https://img.shields.io/travis/gabrieliuga/laravel-mail-log/master.svg?style=flat-square)](https://travis-ci.org/gabrieliuga/laravel-mail-log)
 [![Quality Score](https://img.shields.io/scrutinizer/g/gabrieliuga/laravel-mail-log.svg?style=flat-square)](https://scrutinizer-ci.com/g/gabrieliuga/laravel-mail-log)
-[![StyleCI](https://github.styleci.io/repos/234427810/shield?branch=master)](https://github.styleci.io/repos/234427810)
+[![StyleCI](https://github.styleci.io/repos/234824362/shield?branch=master)](https://github.styleci.io/repos/234824362)
 [![Total Downloads](https://img.shields.io/packagist/dt/gabrieliuga/laravel-mail-log.svg?style=flat-square)](https://packagist.org/packages/gabrieliuga/laravel-mail-log)
 
 Log all outgoing emails from your laravel application

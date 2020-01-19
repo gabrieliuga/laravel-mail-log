@@ -4,8 +4,6 @@ namespace Giuga\LaravelMailLog\Listeners;
 
 use Giuga\LaravelMailLog\Models\MailLog;
 use Illuminate\Mail\Events\MessageSent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class MailSentListener
 {
@@ -36,7 +34,7 @@ class MailSentListener
             'bcc' => implode(', ', is_array($bcc) ? array_keys($bcc) : $bcc),
             'subject' => $event->message->getSubject(),
             'message' => $event->message->getBody(),
-            'data' => []
+            'data' => [],
         ];
         MailLog::create($data);
     }
