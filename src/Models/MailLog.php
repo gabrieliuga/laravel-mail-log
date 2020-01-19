@@ -9,6 +9,6 @@ class MailLog extends Model
     protected $table = 'mail_log';
     protected $guarded = [];
     protected $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 }
