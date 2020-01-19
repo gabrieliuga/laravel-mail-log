@@ -19,6 +19,7 @@ class MailEventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        parent::boot();
     }
 
     /**
