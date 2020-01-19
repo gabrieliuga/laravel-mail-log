@@ -28,6 +28,7 @@ class LaravelMailLogServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(MailEventServiceProvider::class);
+        $this->app->register(MailPolicyServiceProvider::class);
 
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'maillog-config');
