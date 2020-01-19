@@ -1,0 +1,56 @@
+{
+    "name": "gabrieliuga/laravel-mail-log",
+    "description": "Record all outgoing emails from.",
+    "keywords": [
+        "laravel",
+        "laravel-mail-log",
+        "seo",
+        "meta"
+    ],
+    "homepage": "https://github.com/gabrieliuga/laravel-mail-log",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Gabriel Iuga",
+            "email": "me@iuga.dev",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "laravel/framework": "^6.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Giuga\\LaravelMailLog\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Giuga\\LaravelMailLog\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Giuga\\LaravelMailLog\\LaravelMailLogServiceProvider"
+            ],
+            "aliases": {
+                "LaravelMailLog": "Giuga\\LaravelMailLog\\LaravelMailLogFacade"
+            }
+        }
+    }
+}
