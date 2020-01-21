@@ -33,16 +33,5 @@ abstract class TestCase extends Orchestra
         include_once __DIR__.'/../database/migrations/2020_01_12_215032_create_mail_log_tables.php';
 
         (new \CreateMailLogTables())->up();
-
-        $app['db']->connection()->getSchemaBuilder()->create('test_model_a', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('slug')->nullable();
-        });
-
-        $app['db']->connection()->getSchemaBuilder()->create('test_model_b', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-        });
     }
 }
