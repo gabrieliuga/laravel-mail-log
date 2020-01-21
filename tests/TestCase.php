@@ -3,7 +3,6 @@
 namespace Giuga\LaravelMailLog\Tests;
 
 use Giuga\LaravelMailLog\LaravelMailLogServiceProvider;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 

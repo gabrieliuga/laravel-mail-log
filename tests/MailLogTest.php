@@ -5,7 +5,6 @@ namespace Gabrieliuga\LaravelMailLog\Tests;
 use Giuga\LaravelMailLog\Models\MailLog;
 use Giuga\LaravelMailLog\Tests\TestCase;
 use Illuminate\Mail\Events\MessageSent;
-use Illuminate\Mail\Message;
 
 class MailLogTest extends TestCase
 {
