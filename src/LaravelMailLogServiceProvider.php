@@ -22,7 +22,7 @@ class LaravelMailLogServiceProvider extends ServiceProvider
             ], 'maillog-config');
 
             $this->commands([
-                ClearOldEmails::class
+                ClearOldEmails::class,
             ]);
         }
     }

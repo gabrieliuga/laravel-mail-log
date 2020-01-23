@@ -8,7 +8,6 @@ use Giuga\LaravelMailLog\Tests\TestCase;
 use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Artisan;
-use PHPUnit\Framework\Constraint\DirectoryExists;
 
 class MailLogTest extends TestCase
 {
@@ -43,7 +42,7 @@ class MailLogTest extends TestCase
         $swiftMessage->addCc('test_cc@example.com');
         $newMsg = new Message($swiftMessage);
 
-        $newMsg->setBody('<div>TextContent<img src="'.$newMsg->embed(__DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'test.png').'" /></div>');
+        $newMsg->setBody('<div>TextContent<img src="'.$newMsg->embed(__DIR__.DIRECTORY_SEPARATOR.'data'.DIRECTORY_SEPARATOR.'test.png').'" /></div>');
         event(new MessageSent($newMsg->getSwiftMessage(), []));
 
         $this->assertEquals(1, MailLog::all()->count());
@@ -59,10 +58,10 @@ class MailLogTest extends TestCase
     public function testPurgeCommand()
     {
         MailLog::truncate();
-        for($x = 0; $x < 100; $x++){
+        for ($x = 0; $x < 100; $x++) {
             MailLog::create([
-               'to' => $x . 'example@test.com',
-               'created_at' => Carbon::now()->subDays($x)
+                'to' => $x.'example@test.com',
+                'created_at' => Carbon::now()->subDays($x),
             ]);
         }
         $this->assertEquals(100, MailLog::all()->count());
@@ -71,6 +70,5 @@ class MailLogTest extends TestCase
 
         Artisan::call('giuga:purge-mail-log');
         $this->assertEquals(8, MailLog::all()->count());
-
     }
 }
