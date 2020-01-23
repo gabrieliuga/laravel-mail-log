@@ -35,7 +35,6 @@ class MailLogTest extends TestCase
     /** @test */
     public function testMailImageAttached()
     {
-
         $swiftMessage = new \Swift_Message('Test Subject', 'Test Content');
         $swiftMessage->addTo('test@example.com');
         $swiftMessage->addBcc('test_bcc@example.com');
