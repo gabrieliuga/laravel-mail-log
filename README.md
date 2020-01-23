@@ -22,6 +22,30 @@ composer require gabrieliuga/laravel-mail-log
 artisan migrate
 
 artisan vendor:publish --tag=maillog-config
+
+```
+#### Setup auto clear command in app/Console/Kernel.php add ClearOldEmails::class
+```php
+/**
+ * The Artisan commands provided by your application.
+ *
+ * @var array
+ */
+protected $commands = [
+    ClearOldEmails::class,
+];
+
+/**
+ * Define the application's command schedule.
+ *
+ * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+ * @return void
+ */
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('giuga:purge-mail-log')->daily();
+}
+
 ```
 
 ### Testing

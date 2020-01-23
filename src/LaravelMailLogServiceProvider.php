@@ -2,6 +2,7 @@
 
 namespace Giuga\LaravelMailLog;
 
+use Giuga\LaravelMailLog\Commands\ClearOldEmails;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelMailLogServiceProvider extends ServiceProvider
@@ -19,6 +20,10 @@ class LaravelMailLogServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('mail-log.php'),
             ], 'maillog-config');
+
+            $this->commands([
+                ClearOldEmails::class
+            ]);
         }
     }
 
@@ -31,7 +36,7 @@ class LaravelMailLogServiceProvider extends ServiceProvider
         $this->app->register(MailPolicyServiceProvider::class);
 
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'maillog-config');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'mail-log');
 
         // Register the main class to use with the facade
         $this->app->singleton('laravel-mail-log', function () {

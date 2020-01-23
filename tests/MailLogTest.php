@@ -2,9 +2,13 @@
 
 namespace Gabrieliuga\LaravelMailLog\Tests;
 
+use Carbon\Carbon;
 use Giuga\LaravelMailLog\Models\MailLog;
 use Giuga\LaravelMailLog\Tests\TestCase;
 use Illuminate\Mail\Events\MessageSent;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Artisan;
+use PHPUnit\Framework\Constraint\DirectoryExists;
 
 class MailLogTest extends TestCase
 {
@@ -27,5 +31,46 @@ class MailLogTest extends TestCase
         $this->assertEquals('test@example.com', MailLog::first()->to);
         $this->assertEquals('test_bcc@example.com', MailLog::first()->bcc);
         $this->assertEquals('test_cc@example.com', MailLog::first()->cc);
+    }
+
+    /** @test */
+    public function testMailImageAttached()
+    {
+
+        $swiftMessage = new \Swift_Message('Test Subject', 'Test Content');
+        $swiftMessage->addTo('test@example.com');
+        $swiftMessage->addBcc('test_bcc@example.com');
+        $swiftMessage->addCc('test_cc@example.com');
+        $newMsg = new Message($swiftMessage);
+
+        $newMsg->setBody('<div>TextContent<img src="'.$newMsg->embed(__DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'test.png').'" /></div>');
+        event(new MessageSent($newMsg->getSwiftMessage(), []));
+
+        $this->assertEquals(1, MailLog::all()->count());
+        $model = MailLog::first();
+        $this->assertEquals('test@example.com', $model->to);
+        $this->assertEquals('test_bcc@example.com', $model->bcc);
+        $this->assertEquals('test_cc@example.com', $model->cc);
+        $this->assertStringContainsString('<img src="data:image/png;base64,', $model->message);
+        $this->assertStringNotContainsString('cid:', $model->message);
+    }
+
+    /** @test */
+    public function testPurgeCommand()
+    {
+        MailLog::truncate();
+        for($x = 0; $x < 100; $x++){
+            MailLog::create([
+               'to' => $x . 'example@test.com',
+               'created_at' => Carbon::now()->subDays($x)
+            ]);
+        }
+        $this->assertEquals(100, MailLog::all()->count());
+        $this->assertEquals(7, config('mail-log.purge_after'));
+        $this->assertEquals(true, config('mail-log.purge'));
+
+        Artisan::call('giuga:purge-mail-log');
+        $this->assertEquals(8, MailLog::all()->count());
+
     }
 }
