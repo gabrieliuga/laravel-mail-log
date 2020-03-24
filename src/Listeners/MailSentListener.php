@@ -3,6 +3,8 @@
 namespace Giuga\LaravelMailLog\Listeners;
 
 use Giuga\LaravelMailLog\Models\MailLog;
+use Giuga\LaravelMailLog\Traits\Occurrable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Support\Facades\Log;
 
@@ -50,7 +52,19 @@ class MailSentListener
                 'message' => $body,
                 'data' => [],
             ];
-            MailLog::create($data);
+            $log = MailLog::create($data);
+
+            $occuredEntity = $event->data[Occurrable::getOccuredEntityKey()] ?? null;
+            $occuredProcess = $event->data[Occurrable::getOccuredProcessKey()] ?? null;
+
+            if($occuredEntity && $occuredEntity instanceof Model) {
+                $log->occurredEntity()->associate($occuredEntity)->save();
+            }
+
+            if($occuredProcess && $occuredProcess instanceof Model) {
+                $log->occurredProcess()->associate($occuredProcess)->save();
+            }
+
         } catch (\Throwable $e) {
             Log::debug('Failed to save mail log ['.$e->getMessage().']');
         }
