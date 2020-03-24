@@ -57,14 +57,13 @@ class MailSentListener
             $occuredEntity = $event->data[Occurrable::getOccuredEntityKey()] ?? null;
             $occuredProcess = $event->data[Occurrable::getOccuredProcessKey()] ?? null;
 
-            if($occuredEntity && $occuredEntity instanceof Model) {
+            if ($occuredEntity && $occuredEntity instanceof Model) {
                 $log->occurredEntity()->associate($occuredEntity)->save();
             }
 
-            if($occuredProcess && $occuredProcess instanceof Model) {
+            if ($occuredProcess && $occuredProcess instanceof Model) {
                 $log->occurredProcess()->associate($occuredProcess)->save();
             }
-
         } catch (\Throwable $e) {
             Log::debug('Failed to save mail log ['.$e->getMessage().']');
         }
