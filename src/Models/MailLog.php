@@ -21,4 +21,9 @@ class MailLog extends Model
     {
         return $this->morphTo();
     }
+
+    public function recipient()
+    {
+        return $this->morphTo();
+    }
 }
