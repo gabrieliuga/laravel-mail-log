@@ -71,7 +71,6 @@ class MailSentListener
             if ($recipient && $recipient instanceof Model) {
                 $log->recipient()->associate($recipient)->save();
             }
-
         } catch (\Throwable $e) {
             Log::debug('Failed to save mail log ['.$e->getMessage().']');
         }
