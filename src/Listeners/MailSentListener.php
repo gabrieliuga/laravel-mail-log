@@ -50,6 +50,7 @@ class MailSentListener
                 'cc' => implode(', ', is_array($cc) ? array_keys($cc) : $cc),
                 'bcc' => implode(', ', is_array($bcc) ? array_keys($bcc) : $bcc),
                 'subject' => $event->message->getSubject(),
+                'message_id' => $event->message->getId(),
                 'message' => $body,
                 'data' => [],
             ];

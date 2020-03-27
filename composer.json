@@ -22,6 +22,7 @@
         "laravel/framework": ">=6.2"
     },
     "require-dev": {
+        "doctrine/dbal": "^2.10",
         "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^8.5"
     },

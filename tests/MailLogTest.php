@@ -24,12 +24,14 @@ class MailLogTest extends TestCase
         $swiftMessage->addTo('test@example.com');
         $swiftMessage->addBcc('test_bcc@example.com');
         $swiftMessage->addCc('test_cc@example.com');
+        $swiftMessage->setId('a300a4ca2fd6853ee1763ce5dbe4ab9e@swift.generated');
         event(new MessageSent($swiftMessage, []));
 
         $this->assertEquals(1, MailLog::all()->count());
         $this->assertEquals('test@example.com', MailLog::first()->to);
         $this->assertEquals('test_bcc@example.com', MailLog::first()->bcc);
         $this->assertEquals('test_cc@example.com', MailLog::first()->cc);
+        $this->assertEquals('a300a4ca2fd6853ee1763ce5dbe4ab9e@swift.generated', MailLog::first()->message_id);
     }
 
     /** @test */
