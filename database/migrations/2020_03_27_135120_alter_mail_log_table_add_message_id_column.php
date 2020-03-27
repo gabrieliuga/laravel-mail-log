@@ -14,7 +14,7 @@ class AlterMailLogTableAddMessageIdColumn extends Migration
     public function up()
     {
         Schema::table('mail_log', function (Blueprint $table) {
-            $table->string('message_id')->nullable();
+            $table->string('message_id')->nullable()->unique();
         });
     }
 
