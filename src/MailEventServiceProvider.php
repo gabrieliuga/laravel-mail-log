@@ -27,5 +27,7 @@ class MailEventServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Laravel 8 need to invoke this to register the events defined at $listen
+        parent::register();
     }
 }
