@@ -19,10 +19,11 @@ composer require gabrieliuga/laravel-mail-log
 ## Usage
 
 ``` bash
-artisan migrate
+php artisan migrate
+```
 
-artisan vendor:publish --tag=maillog-config
-
+``` bash
+php artisan vendor:publish --tag=maillog-config
 ```
 #### Setup auto clear command in app/Console/Kernel.php add ClearOldEmails::class
 ```php
